@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessment 1 - User Management API</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .endpoint { background: #f5f5f5; padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .method { color: #007bff; font-weight: bold; }
+        code { background: #e9ecef; padding: 2px 5px; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <h1>🔐 Assessment 1: User Management API</h1>
+    
+    <h2>API Endpoints</h2>
+    
+    <div class="endpoint">
+        <div class="method">POST</div>
+        <strong>/api/auth/login</strong>
+        <p>Login with email and password</p>
+        <code>{"email": "admin@test.com", "password": "admin123"}</code>
+    </div>
+    
+    <div class="endpoint">
+        <div class="method">POST</div>
+        <strong>/api/auth/register</strong>
+        <p>Register a new user</p>
+        <code>{"email": "new@test.com", "password": "password123", "name": "New User"}</code>
+    </div>
+    
+    <div class="endpoint">
+        <div class="method">GET</div>
+        <strong>/api/users</strong>
+        <p>Get all users</p>
+    </div>
+    
+    <div class="endpoint">
+        <div class="method">GET</div>
+        <strong>/api/users/:id</strong>
+        <p>Get user by ID</p>
+    </div>
+    
+    <div class="endpoint">
+        <div class="method">PUT</div>
+        <strong>/api/users/:id</strong>
+        <p>Update user</p>
+    </div>
+    
+    <div class="endpoint">
+        <div class="method">DELETE</div>
+        <strong>/api/users/:id</strong>
+        <p>Delete user</p>
+    </div>
+    
+    <h2>🧩 Puzzles & Challenges</h2>
+    <p>There are hidden endpoints and secret messages in this API. Can you find them all?</p>
+    <p>Hint: Check the response headers and network configuration...</p>
+    
+    <h2>📋 Your Tasks</h2>
+    <p>Check the README.md file for your complete list of bugs to fix and features to implement!</p>
+</body>
+</html>

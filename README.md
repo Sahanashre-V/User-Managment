@@ -1,1 +1,1 @@
-# Medable
+# Assessment 1 — User Management API
