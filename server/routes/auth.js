@@ -3,29 +3,9 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { v4: uuidv4 } = require('uuid');
 const validator = require('validator');
+const { users } = require('../data/users');
 
 const router = express.Router();
-
-// In-memory user storage (simulate database)
-let users = [
-  {
-    id: '1',
-    email: 'admin@test.com',
-    password: '$2a$10$U6LLSFaA8R2w6zkDE.4qtOAKXbqWO02YCUWh897tJ/Lknd16xeQkO', // 'admin123'
-    name: 'Admin User',
-    role: 'admin',
-    createdAt: new Date('2024-01-01').toISOString()
-  },
-  {
-    id: '2',
-    email: 'user@test.com',
-    password: '$2a$10$8Q5FxYjomDvKv/EqyR.4fu80mkR7ZpFMdVR456o5xLye/C4TxeeaG', // 'user123'
-    name: 'Regular User',
-    role: 'user',
-    createdAt: new Date('2024-01-02').toISOString()
-  }
-];
-
 
 // FIXED: Use environment variable for JWT secret
 const JWT_SECRET = process.env.JWT_SECRET 

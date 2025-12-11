@@ -3,6 +3,7 @@ const cors = require('cors');
 const path = require('path');
 const dotenv = require('dotenv');
 dotenv.config();
+const rateLimit = require('express-rate-limit');
 
 // Import routes
 const authRoutes = require('./routes/auth');
@@ -11,6 +12,16 @@ const secretStatsRoutes = require('./routes/secret-stats');
 
 const app = express();
 const PORT = process.env.PORT || 8888;
+
+// Rate Limiting
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100,
+  message: {
+    error: "Too many requests, please try again later."
+  }
+});
+app.use(limiter);
 
 // Middleware
 app.use(cors());

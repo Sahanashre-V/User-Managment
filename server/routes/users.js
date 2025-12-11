@@ -1,33 +1,12 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const { users } = require('../data/users');
 
 const router = express.Router();
 
-// In-memory user storage (simulate database)
-let users = [
-  {
-    id: '1',
-    email: 'admin@test.com',
-    password: '$2a$10$8K1p/a0dCVIRRqL.Qk0mce7LzYVbKuLyZg.3/t.NzXo/1UhqKqYxa',
-    name: 'Admin User',
-    role: 'admin',
-    createdAt: new Date('2024-01-01').toISOString()
-  },
-  {
-    id: '2',
-    email: 'user@test.com',
-    password: '$2a$10$qHT2AjOcNsXJKPc4G8/yte1FOjTxKqYfCYh2KNF9xD8FbhPi0qO8u',
-    name: 'Regular User',
-    role: 'user',
-    createdAt: new Date('2024-01-02').toISOString()
-  }
-];
-
 // Use environment secret
 const JWT_SECRET = process.env.JWT_SECRET;
-
-// ---------- AUTH MIDDLEWARE ----------
 
 function verifyToken(req, res, next) {
   const header = req.headers.authorization;
@@ -51,10 +30,7 @@ function requireAdmin(req, res, next) {
   next();
 }
 
-// 🔥 Fix: Alias for older name used in your code
 const requireAuth = verifyToken;
-
-// ---------- ROUTES ----------
 
 // GET ALL USERS
 router.get('/', requireAuth, requireAdmin, async (req, res) => {
