@@ -36,6 +36,7 @@ const requireAuth = verifyToken;
 router.get('/', requireAuth, requireAdmin, async (req, res) => {
   try {
     // Pagination
+    // const searchByName = 
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
     const start = (page - 1) * limit;

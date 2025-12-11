@@ -4,6 +4,10 @@ const path = require('path');
 const dotenv = require('dotenv');
 dotenv.config();
 const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+const xss = require('xss-clean');
+const morgan = require('morgan');
+const logger = require('./logger');
 
 // Import routes
 const authRoutes = require('./routes/auth');
@@ -22,6 +26,13 @@ const limiter = rateLimit({
   }
 });
 app.use(limiter);
+app.use(helmet());
+app.use(xss());
+app.use(morgan('combined', {
+  stream: {
+    write: message => logger.info(message.trim())
+  }
+}));
 
 // Middleware
 app.use(cors());
