@@ -32,22 +32,36 @@ function requireAdmin(req, res, next) {
 
 const requireAuth = verifyToken;
 
-// GET ALL USERS
+// GET ALL USERS (with search and pagination)
 router.get('/', requireAuth, requireAdmin, async (req, res) => {
   try {
+    const { search } = req.query;
+    
     // Pagination
-    // const searchByName = 
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
+
+    let filteredUsers = [...users];
+
+    // search (searches in name and email)
+    if (search) {
+      const searchLower = search.toLowerCase();
+      filteredUsers = filteredUsers.filter(user =>
+        user.name.toLowerCase().includes(searchLower) ||
+        user.email.toLowerCase().includes(searchLower)
+      );
+    }
+
+    // Applying pagination
     const start = (page - 1) * limit;
     const end = start + limit;
-
-    const paginatedUsers = users.slice(start, end);
+    const paginatedUsers = filteredUsers.slice(start, end);
 
     res.set({
-      'X-Total-Users': users.length.toString(),
+      'X-Total-Users': filteredUsers.length.toString(),
       'X-Page': page.toString(),
       'X-Limit': limit.toString(),
+      'X-Total-Pages': Math.ceil(filteredUsers.length / limit).toString(),
       'X-Secret-Endpoint': '/api/users/secret-stats'
     });
 
@@ -58,7 +72,13 @@ router.get('/', requireAuth, requireAdmin, async (req, res) => {
         name: user.name,
         role: user.role,
         createdAt: user.createdAt
-      }))
+      })),
+      pagination: {
+        currentPage: page,
+        totalPages: Math.ceil(filteredUsers.length / limit),
+        totalUsers: filteredUsers.length,
+        limit: limit
+      }
     });
   } catch (err) {
     res.status(500).json({ error: "Internal server error" });

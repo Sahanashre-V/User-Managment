@@ -1,2 +1,55 @@
 {"level":"info","message":"::1 - - [11/Dec/2025:09:45:08 +0000] \"PUT /api/users/2 HTTP/1.1\" 200 157 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T09:45:08.899Z"}
-{"level":"info","message":"::1 - - [11/Dec/2025:09:50:43 +0000] \"GET /api/users HTTP/1.1\" 401 25 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T09:50:43.735Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:09:50:43 +0000] \"GET /api/users HTTP/1.1\" 401 25 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T09:50:43.735Z"}{"level":"info","message":"::1 - - [11/Dec/2025:14:35:56 +0000] \"POST /api/auth/register HTTP/1.1\" 400 32 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T14:35:56.098Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:14:36:09 +0000] \"POST /api/auth/register HTTP/1.1\" 400 32 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T14:36:09.487Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:14:36:16 +0000] \"POST /api/auth/register HTTP/1.1\" 400 32 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T14:36:16.006Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:14:36:25 +0000] \"POST /api/auth/register HTTP/1.1\" 400 32 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T14:36:25.197Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:14:36:33 +0000] \"POST /api/auth/register HTTP/1.1\" 201 222 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T14:36:33.187Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:14:38:46 +0000] \"POST /api/auth/register HTTP/1.1\" 201 229 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T14:38:46.993Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:14:39:27 +0000] \"POST /api/auth/register HTTP/1.1\" 409 31 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T14:39:27.181Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:14:39:28 +0000] \"POST /api/auth/register HTTP/1.1\" 409 31 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T14:39:28.411Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:14:43:26 +0000] \"GET /api/auth/activate/82b1d33f1fb8eab3ffca5b353d7fb8ce70f945068e97e68e3f721c9cc8482294 HTTP/1.1\" 200 203 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36\"","timestamp":"2025-12-11T14:43:26.924Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:14:43:27 +0000] \"GET /favicon.ico HTTP/1.1\" 404 30 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36\"","timestamp":"2025-12-11T14:43:27.019Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:14:45:24 +0000] \"GET /api/auth/login HTTP/1.1\" 404 30 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T14:45:24.543Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:14:45:30 +0000] \"POST /api/auth/login HTTP/1.1\" 200 418 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T14:45:30.942Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:15:14:14 +0000] \"POST /api/auth/forgot-password HTTP/1.1\" 200 70 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T15:14:14.791Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:15:25:12 +0000] \"GET /api/auth/reset-password HTTP/1.1\" 404 30 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T15:25:12.723Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:15:25:30 +0000] \"POST /api/auth/reset-password HTTP/1.1\" 400 34 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T15:25:30.758Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:15:25:42 +0000] \"POST /api/auth/reset-password HTTP/1.1\" 400 30 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T15:25:42.980Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:15:26:02 +0000] \"POST /api/auth/reset-password HTTP/1.1\" 200 94 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T15:26:02.409Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:15:26:26 +0000] \"POST /api/auth/login HTTP/1.1\" 401 44 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T15:26:26.880Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:15:26:39 +0000] \"POST /api/auth/login HTTP/1.1\" 200 418 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T15:26:39.428Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:38:17 +0000] \"GET /api/users?search=sahanashre.v@gmail.com HTTP/1.1\" 401 25 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:38:17.642Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:38:19 +0000] \"GET /api/users?search=sahanashre.v@gmail.com HTTP/1.1\" 401 25 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:38:19.334Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:38:31 +0000] \"POST /api/auth/login HTTP/1.1\" 401 41 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:38:31.058Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:38:40 +0000] \"POST /api/auth/login HTTP/1.1\" 401 41 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:38:40.892Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:38:42 +0000] \"POST /api/auth/login HTTP/1.1\" 401 41 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:38:42.587Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:38:54 +0000] \"POST /api/auth/login HTTP/1.1\" 401 41 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:38:54.326Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:38:55 +0000] \"POST /api/auth/login HTTP/1.1\" 401 41 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:38:55.393Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:39:59 +0000] \"POST /api/auth/register HTTP/1.1\" 201 229 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:39:59.376Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:40:21 +0000] \"GET /api/auth/activate/c939399e9618d9dbbed0372ed8fd92c3c35d20900af11a965da36dd68a8a0b0f HTTP/1.1\" 200 203 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36\"","timestamp":"2025-12-11T16:40:21.243Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:40:37 +0000] \"POST /api/auth/login HTTP/1.1\" 401 44 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:40:37.147Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:40:40 +0000] \"POST /api/auth/login HTTP/1.1\" 401 44 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:40:40.004Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:40:51 +0000] \"POST /api/auth/login HTTP/1.1\" 200 418 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:40:51.812Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:41:04 +0000] \"GET /api/users?search=sahanashre.v@gmail.com HTTP/1.1\" 403 33 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:41:04.307Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:41:05 +0000] \"GET /api/users?search=sahanashre.v@gmail.com HTTP/1.1\" 403 33 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:41:05.762Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:42:12 +0000] \"POST /api/auth/login HTTP/1.1\" 200 318 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:42:12.245Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:42:31 +0000] \"GET /api/users?search=sahanashre.v@gmail.com HTTP/1.1\" 200 237 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:42:31.864Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:43:06 +0000] \"GET /api/users HTTP/1.1\" 200 457 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:43:06.723Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:43:21 +0000] \"GET /api/users?limit=1 HTTP/1.1\" 200 192 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:43:21.104Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:43:38 +0000] \"GET /api/users?page=2&limit=1 HTTP/1.1\" 200 192 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:43:38.983Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:43:45 +0000] \"GET /api/users?page=3&limit=1 HTTP/1.1\" 200 236 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:43:45.300Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:44:02 +0000] \"GET /api/users HTTP/1.1\" 200 457 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:44:02.578Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:50:48 +0000] \"POST /api/auth/login HTTP/1.1\" 401 41 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:50:48.753Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:50:53 +0000] \"POST /api/auth/login HTTP/1.1\" 401 41 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:50:53.991Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:50:55 +0000] \"POST /api/auth/login HTTP/1.1\" 401 41 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:50:55.500Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:51:02 +0000] \"POST /api/auth/login HTTP/1.1\" 401 41 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:51:02.308Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:51:12 +0000] \"POST /api/auth/login HTTP/1.1\" 200 315 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:51:12.999Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:52:39 +0000] \"DELETE /api/auth/users/3 HTTP/1.1\" 404 30 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:52:39.529Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:52:59 +0000] \"DELETE /api/users/3 HTTP/1.1\" 403 33 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:52:59.502Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:58:04 +0000] \"POST /api/auth/login HTTP/1.1\" 200 318 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:58:04.220Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:58:21 +0000] \"DELETE /api/users/3 HTTP/1.1\" 404 26 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:58:21.087Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:58:25 +0000] \"DELETE /api/users/2 HTTP/1.1\" 200 39 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:58:25.547Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:58:29 +0000] \"DELETE /api/users/1 HTTP/1.1\" 400 42 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:58:29.879Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:58:35 +0000] \"DELETE /api/users/2 HTTP/1.1\" 404 26 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:58:35.454Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:16:58:37 +0000] \"DELETE /api/users/3 HTTP/1.1\" 404 26 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T16:58:37.897Z"}
+{"level":"info","message":"::1 - - [11/Dec/2025:17:03:29 +0000] \"GET /api/users HTTP/1.1\" 200 347 \"-\" \"bruno-runtime/.0.1\"","timestamp":"2025-12-11T17:03:29.964Z"}
