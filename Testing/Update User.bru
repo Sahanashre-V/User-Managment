@@ -1,0 +1,22 @@
+meta {
+  name: Update User
+  type: http
+  seq: 3
+}
+
+put {
+  url: http://localhost:8888/api/users/2
+  body: json
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer {{authToken}}
+}
+
+body:json {
+  {
+    "email":"user1@test.com",
+    "password":"user_123"
+  }
+}
