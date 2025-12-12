@@ -2,6 +2,7 @@
 
 const express = require('express');
 const { requireAuth, requireAdmin } = require('../middleware/auth');
+const { users } = require('../data/users');
 
 const router = express.Router();
 
@@ -26,10 +27,13 @@ router.get('/', requireAuth, requireAdmin, async (req, res) => {
       });
     }
 
+  const adminCount = users.filter(u => u.role === 'admin').length;
+  const userCount = users.filter(u => u.role === 'user').length;
+
     const stats = {
-      totalUsers: 2,
-      adminUsers: 1,
-      regularUsers: 1,
+      totalUsers: adminCount + userCount,
+      adminUsers: adminCount,
+      regularUsers: userCount,
       systemInfo: {
         nodeVersion: process.version,
         platform: process.platform,

@@ -6,6 +6,7 @@ const { v4: uuidv4 } = require('uuid');
 const validator = require('validator');
 const { users } = require('../data/users');
 const { sendActivationEmail, sendPasswordResetEmail } = require('../utils/email-service');
+const { requireAuth, requireAdmin } = require('../middleware/auth');
 
 const router = express.Router();
 
@@ -272,5 +273,68 @@ router.post('/reset-password', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
+//profile
+router.get('/profile', requireAuth, (req, res) => {
+  const user = users.find(u => u.id === req.user.userId);
+
+  if (!user) {
+    return res.status(404).json({ error: "User not found" });
+  }
+
+  res.json({
+    id: user.id,
+    email: user.email,
+    name: user.name,
+    role: user.role,
+    createdAt: user.createdAt
+  });
+});
+
+//password change
+// Change password (requires login)
+router.post('/change-password', requireAuth, async (req, res) => {
+  const { oldPassword, newPassword } = req.body;
+
+  if (!oldPassword || !newPassword) {
+    return res.status(400).json({ error: "Old and new passwords are required" });
+  }
+
+  if (!validator.isStrongPassword(newPassword)) {
+    return res.status(400).json({ error: "New password is too weak" });
+  }
+
+  const user = users.find(u => u.id === req.user.userId);
+
+  if (!user) {
+    return res.status(404).json({ error: "User not found" });
+  }
+
+  const match = await bcrypt.compare(oldPassword, user.password);
+
+  if (!match) {
+    return res.status(401).json({ error: "Old password is incorrect" });
+  }
+
+  user.password = await bcrypt.hash(newPassword, 10);
+
+  res.json({ message: "Password updated successfully." });
+});
+
+
+//status
+router.get('/stats', requireAuth, requireAdmin, (req, res) => {
+  const adminCount = users.filter(u => u.role === 'admin').length;
+  const userCount = users.filter(u => u.role === 'user').length;
+
+  res.json({
+    totalUsers: users.length,
+    adminUsers: adminCount,
+    regularUsers: userCount,
+    systemStatus: "OK",
+    timestamp: new Date().toISOString()
+  });
+});
+
 
 module.exports = router;
