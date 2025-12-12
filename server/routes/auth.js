@@ -10,20 +10,20 @@ const { requireAuth, requireAdmin } = require('../middleware/auth');
 
 const router = express.Router();
 
-// FIXED: Use environment variable for JWT secret
+// env variables
 const JWT_SECRET = process.env.JWT_SECRET;
 
-// Generate secure tokens
+// tokens generation
 function generateSecureToken() {
   return crypto.randomBytes(32).toString('hex');
 }
 
-// Login endpoint
+// Login 
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // FIXED: Input validation
+    // Inputs are validated
     if (!email || !password) {
       return res.status(400).json({ error: 'Email and password required' });
     }
@@ -38,7 +38,7 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ error: 'Invalid credentials for email' });
     }
 
-    // Check if account is activated
+    // Account activation check
     if (user.isActive === false) {
       return res.status(403).json({ 
         error: 'Account not activated. Please check your email for the activation link.',
@@ -46,7 +46,6 @@ router.post('/login', async (req, res) => {
       });
     }
 
-    // FIXED: Ensure bcrypt.compare is awaited — it already was, so this is fine
     const validPassword = await bcrypt.compare(password, user.password);
 
     if (!validPassword) {
@@ -76,12 +75,11 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Register endpoint
+// Register
 router.post('/register', async (req, res) => {
   try {
     const { email, password, name, role } = req.body;
 
-    // FIXED: Complete validation
     if (!email || !password) {
       return res.status(400).json({ error: 'Email and password required' });
     }
@@ -100,7 +98,6 @@ router.post('/register', async (req, res) => {
       return res.status(409).json({ error: 'User already exists' });
     }
 
-    // FIXED: Validate roles safely
     const allowedRoles = ['user', 'admin'];
     const finalRole = allowedRoles.includes(role) ? role : 'user';
 
@@ -126,7 +123,7 @@ router.post('/register', async (req, res) => {
 
     users.push(newUser);
 
-    // Send activation email via Brevo SMTP
+    // Send activation email by Brevo SMTP
     const activationLink = `http://localhost:8888/api/auth/activate/${activationToken}`;
     await sendActivationEmail(email, newUser.name, activationLink);
 
@@ -146,7 +143,7 @@ router.post('/register', async (req, res) => {
   }
 });
 
-// Account Activation Endpoint
+// Account Activation 
 router.get('/activate/:token', async (req, res) => {
   try {
     const { token } = req.params;
@@ -184,7 +181,7 @@ router.get('/activate/:token', async (req, res) => {
   }
 });
 
-// Request Password Reset Endpoint
+// Password Reset
 router.post('/forgot-password', async (req, res) => {
   try {
     const { email } = req.body;
@@ -199,21 +196,20 @@ router.post('/forgot-password', async (req, res) => {
 
     const user = users.find(u => u.email === email);
 
-    // Always return success to prevent email enumeration
     const successMessage = 'If the email exists, a password reset link will be sent.';
 
     if (!user) {
       return res.json({ message: successMessage });
     }
 
-    // Generate 6-digit secure reset code
+    // 6-digit secure reset code generation
     const resetCode = crypto.randomInt(100000, 999999).toString();
     const resetTokenExpires = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
 
     user.resetToken = resetCode;
     user.resetTokenExpires = resetTokenExpires.toISOString();
 
-    // Send password reset email via Brevo SMTP
+    // Password reset email 
     await sendPasswordResetEmail(email, user.name, resetCode);
 
     res.json({
@@ -224,7 +220,6 @@ router.post('/forgot-password', async (req, res) => {
   }
 });
 
-// Reset Password Endpoint (POST with code in body)
 router.post('/reset-password', async (req, res) => {
   try {
     const { code, password, confirmPassword } = req.body;
@@ -260,7 +255,6 @@ router.post('/reset-password', async (req, res) => {
     // Hash the new password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Update user's password and clear reset token
     user.password = hashedPassword;
     user.resetToken = null;
     user.resetTokenExpires = null;
@@ -274,7 +268,7 @@ router.post('/reset-password', async (req, res) => {
   }
 });
 
-//profile
+// Profile
 router.get('/profile', requireAuth, (req, res) => {
   const user = users.find(u => u.id === req.user.userId);
 
@@ -291,8 +285,7 @@ router.get('/profile', requireAuth, (req, res) => {
   });
 });
 
-//password change
-// Change password (requires login)
+// Password change
 router.post('/change-password', requireAuth, async (req, res) => {
   const { oldPassword, newPassword } = req.body;
 
@@ -322,7 +315,7 @@ router.post('/change-password', requireAuth, async (req, res) => {
 });
 
 
-//status
+// Status
 router.get('/stats', requireAuth, requireAdmin, (req, res) => {
   const adminCount = users.filter(u => u.role === 'admin').length;
   const userCount = users.filter(u => u.role === 'user').length;

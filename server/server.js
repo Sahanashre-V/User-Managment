@@ -26,15 +26,17 @@ const limiter = rateLimit({
   }
 });
 app.use(limiter);
+
+// Protection Middlewares
 app.use(helmet());
 app.use(xss());
+
 app.use(morgan('combined', {
   stream: {
     write: message => logger.info(message.trim())
   }
 }));
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -55,22 +57,18 @@ app.use('/api/auth', authRoutes);
 app.use('/api/users/secret-stats', secretStatsRoutes);
 app.use('/api/users', userRoutes);
 
-// Health check endpoint
 app.get('/health', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() });
 });
 
-// Serve static files
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// 404 handler
 app.use('*', (req, res) => {
   res.status(404).json({ error: 'Endpoint not found' });
 });
 
-// Error handler
 app.use((error, req, res, next) => {
   console.error('Error:', error);
   res.status(500).json({ error: 'Internal server error' });

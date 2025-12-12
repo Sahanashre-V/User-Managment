@@ -5,7 +5,7 @@ const { requireAuth, requireAdmin } = require('../middleware/auth');
 
 const router = express.Router();
 
-// GET ALL USERS (with search and pagination)
+// Get all user (even can search for one user by name or email)
 router.get('/', requireAuth, requireAdmin, async (req, res) => {
   try {
     const { search } = req.query;
@@ -16,7 +16,6 @@ router.get('/', requireAuth, requireAdmin, async (req, res) => {
 
     let filteredUsers = [...users];
 
-    // search (searches in name and email)
     if (search) {
       const searchLower = search.toLowerCase();
       filteredUsers = filteredUsers.filter(user =>
@@ -58,7 +57,7 @@ router.get('/', requireAuth, requireAdmin, async (req, res) => {
   }
 });
 
-// GET USER BY ID
+// Display user
 router.get('/:userId', requireAuth, async (req, res) => {
   try {
     const { userId } = req.params;
@@ -82,12 +81,11 @@ router.get('/:userId', requireAuth, async (req, res) => {
   }
 });
 
-// UPDATE USER
+// Update user
 router.put('/:userId', requireAuth, async (req, res) => {
   try {
     const { userId } = req.params;
 
-    // Allow: admin edits anyone OR user edits themselves
     if (req.user.role !== "admin" && req.user.userId !== userId) {
       return res.status(403).json({ error: "Not allowed" });
     }
@@ -97,12 +95,10 @@ router.put('/:userId', requireAuth, async (req, res) => {
 
     const updateData = { ...req.body };
 
-    // Hash password if updating
     if (updateData.password) {
       updateData.password = await bcrypt.hash(updateData.password, 10);
     }
 
-    // Only admin can change roles
     if (updateData.role && req.user.role !== "admin") {
       return res.status(403).json({ error: "Only admins can change roles" });
     }
@@ -124,12 +120,11 @@ router.put('/:userId', requireAuth, async (req, res) => {
   }
 });
 
-// DELETE USER
+// Delete user
 router.delete('/:userId', requireAuth, requireAdmin, async (req, res) => {
   try {
     const { userId } = req.params;
 
-    // Prevent any user from deleting themselves (security measure)
     if (req.user.userId === userId) {
       return res.status(400).json({ 
         error: "Cannot delete your own account",

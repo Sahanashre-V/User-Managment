@@ -10,7 +10,7 @@ const router = express.Router();
 const SECRET_MESSAGE =
   'Q29uZ3JhdHVsYXRpb25zISBZb3UgZm91bmQgdGhlIHNlY3JldCBlbmRwb2ludC4gVGhlIGZpbmFsIGNsdWUgaXM6IFNIQ19IZWFkZXJfUHV6emxlXzIwMjQ=';
 
-// Secret stats endpoint - Requires admin role
+// Admin access given
 router.get('/', requireAuth, requireAdmin, async (req, res) => {
   try {
     const secretHeader = req.get('x-secret-challenge');
