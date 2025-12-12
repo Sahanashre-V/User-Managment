@@ -128,7 +128,7 @@ X-Secret-Challenge: find_me_if_you_can_2024
 ```
 
 ### 🎯 Puzzle 3: Encoded Message
-Decoded secret message obtained from the hidden endpoint.
+Congratulations! You found the secret endpoint. The final clue is: SHC_Header_Puzzle_2024.
 
 ### 🎯 Puzzle 4: Access Methods
 The secret endpoint can be accessed by 2 giving headers and query params:
