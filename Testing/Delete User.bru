@@ -5,7 +5,11 @@ meta {
 }
 
 delete {
-  url: http://localhost:8888/api/auth/3
+  url: http://localhost:8888/api/users/3
   body: none
   auth: inherit
+}
+
+headers {
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxIiwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NTQ3MjI4NCwiZXhwIjoxNzY1NTU4Njg0fQ.7IyaShgsR0wDtQ1q1sI3e8omLdDurkqGQWvwYCNtbYQ
 }

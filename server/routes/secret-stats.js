@@ -1,37 +1,16 @@
 // SECRET ENDPOINT - Part of the assessment puzzle
-// This endpoint should be discovered by reading the hints
 
 const express = require('express');
-const jwt = require('jsonwebtoken');
+const { requireAuth, requireAdmin } = require('../middleware/auth');
 
 const router = express.Router();
-
-// FIXED: Do NOT hard-code secrets
-const JWT_SECRET = process.env.JWT_SECRET 
 
 // Encoded secret message (Base64)
 const SECRET_MESSAGE =
   'Q29uZ3JhdHVsYXRpb25zISBZb3UgZm91bmQgdGhlIHNlY3JldCBlbmRwb2ludC4gVGhlIGZpbmFsIGNsdWUgaXM6IFNIQ19IZWFkZXJfUHV6emxlXzIwMjQ=';
 
-// Authentication middleware (fix for missing auth)
-function requireAuth(req, res, next) {
-  const auth = req.headers.authorization;
-  if (!auth) {
-    return res.status(401).json({ error: 'Missing Authorization header' });
-  }
-
-  const token = auth.split(' ')[1];
-  try {
-    const decoded = jwt.verify(token, JWT_SECRET);
-    req.user = decoded;
-    next();
-  } catch (err) {
-    return res.status(401).json({ error: 'Invalid or expired token' });
-  }
-}
-
-// Secret stats endpoint
-router.get('/', requireAuth, async (req, res) => {
+// Secret stats endpoint - Requires admin role
+router.get('/', requireAuth, requireAdmin, async (req, res) => {
   try {
     const secretHeader = req.get('x-secret-challenge');
     const querySecret = req.query.secret;

@@ -1,36 +1,9 @@
 const express = require('express');
-const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const { users } = require('../data/users');
+const { requireAuth, requireAdmin } = require('../middleware/auth');
 
 const router = express.Router();
-
-// Use environment secret
-const JWT_SECRET = process.env.JWT_SECRET;
-
-function verifyToken(req, res, next) {
-  const header = req.headers.authorization;
-  if (!header) return res.status(401).json({ error: "Missing token" });
-
-  const token = header.split(" ")[1];
-
-  try {
-    const decoded = jwt.verify(token, JWT_SECRET);
-    req.user = decoded;
-    next();
-  } catch (err) {
-    return res.status(401).json({ error: "Invalid token" });
-  }
-}
-
-function requireAdmin(req, res, next) {
-  if (req.user.role !== "admin") {
-    return res.status(403).json({ error: "Admin access required" });
-  }
-  next();
-}
-
-const requireAuth = verifyToken;
 
 // GET ALL USERS (with search and pagination)
 router.get('/', requireAuth, requireAdmin, async (req, res) => {
@@ -52,7 +25,7 @@ router.get('/', requireAuth, requireAdmin, async (req, res) => {
       );
     }
 
-    // Applying pagination
+    // Apply pagination
     const start = (page - 1) * limit;
     const end = start + limit;
     const paginatedUsers = filteredUsers.slice(start, end);
@@ -88,7 +61,13 @@ router.get('/', requireAuth, requireAdmin, async (req, res) => {
 // GET USER BY ID
 router.get('/:userId', requireAuth, async (req, res) => {
   try {
-    const user = users.find(u => u.id === req.params.userId);
+    const { userId } = req.params;
+
+    if (req.user.role !== "admin" && req.user.userId !== userId) {
+      return res.status(403).json({ error: "Access denied. You can only view your own profile." });
+    }
+
+    const user = users.find(u => u.id === userId);
     if (!user) return res.status(404).json({ error: "User not found" });
 
     res.json({
@@ -150,9 +129,12 @@ router.delete('/:userId', requireAuth, requireAdmin, async (req, res) => {
   try {
     const { userId } = req.params;
 
-    // Prevent admin from deleting themselves
+    // Prevent any user from deleting themselves (security measure)
     if (req.user.userId === userId) {
-      return res.status(400).json({ error: "Cannot delete your own account" });
+      return res.status(400).json({ 
+        error: "Cannot delete your own account",
+        message: "Self-deletion is not allowed. Contact another admin."
+      });
     }
 
     const userIndex = users.findIndex(u => u.id === userId);
