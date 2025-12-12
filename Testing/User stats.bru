@@ -1,0 +1,20 @@
+meta {
+  name: User stats
+  type: http
+  seq: 10
+}
+
+get {
+  url: http://localhost:8888/api/users/secret-stats?querySecret=admin_override
+  body: none
+  auth: inherit
+}
+
+params:query {
+  querySecret: admin_override
+}
+
+headers {
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxIiwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NTQ4MjQxMiwiZXhwIjoxNzY1NTY4ODEyfQ.1d18uYsggr-KFPWRQttaYoX4EMlFCBKrZYvjH9ZzTE8
+  secretHeader: find_me_if_you_can_2024
+}

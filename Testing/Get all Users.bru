@@ -5,15 +5,17 @@ meta {
 }
 
 get {
-  url: http://localhost:8888/api/users?page=1
+  url: http://localhost:8888/api/users
   body: json
   auth: inherit
 }
 
 params:query {
-  page: 1
+  ~page: 1
   ~limit: 1
+  ~search: sahanashre.v@gmail.com
 }
 
 headers {
-  Authorization: Bearer }
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxIiwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NTQ3MTMzMiwiZXhwIjoxNzY1NTU3NzMyfQ.pRrqK2oJxZH9ifaeXRG0IMpJSHfWZftPZ5xKWQXfUzw
+}
