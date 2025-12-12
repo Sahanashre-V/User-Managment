@@ -173,6 +173,14 @@ All features behaved as expected after fixes.
 
 ---
 
+## How to run 
+
+- Fork the repository
+- Clone it 
+- npm i
+- npm run dev
+
+
 ## 👤 Author
 
 **Sahanashre V**
