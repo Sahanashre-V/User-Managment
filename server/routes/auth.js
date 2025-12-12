@@ -12,6 +12,7 @@ const router = express.Router();
 
 // env variables
 const JWT_SECRET = process.env.JWT_SECRET;
+const deployedlink = process.env.DEPLOYED_LINK || 'http://localhost:8888';
 
 // tokens generation
 function generateSecureToken() {
@@ -124,7 +125,7 @@ router.post('/register', async (req, res) => {
     users.push(newUser);
 
     // Send activation email by Brevo SMTP
-    const activationLink = `http://localhost:8888/api/auth/activate/${activationToken}`;
+    const activationLink = `${deployedlink}/api/auth/activate/${activationToken}`;
     await sendActivationEmail(email, newUser.name, activationLink);
 
     res.status(201).json({
